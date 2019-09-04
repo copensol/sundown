@@ -1,0 +1,5 @@
+name: 'templateschange'
+type: module
+description: 'Overrides the templates of the site.'
+core: 8.x
+package: 'sundown'

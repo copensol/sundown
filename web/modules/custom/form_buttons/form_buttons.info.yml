@@ -1,0 +1,8 @@
+name: 'Form buttons'
+type: module
+description: 'Changes text on form buttons in commerce and contact forms and carts.'
+core: 8.x
+package: 'sundown'
+dependencies:
+  - contact
+  - contact_storage

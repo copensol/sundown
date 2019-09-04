@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains templateschange.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function templateschange_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the templateschange module.
+    case 'help.page.templateschange':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Overrides the templates of the site.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+
+function templateschange_theme($existing, $type, $theme, $path) {
+  //dsm($existing);
+  $templates = $path . '/templates';
+  return [
+    'html--store--1' => [
+      'template' => 'html--store--1',
+      'base hook' => 'html'
+    ],
+
+  ];
+}

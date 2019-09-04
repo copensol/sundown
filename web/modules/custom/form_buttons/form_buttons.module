@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Contains form_buttons.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function form_buttons_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the form_buttons module.
+    case 'help.page.form_buttons':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Changes text on form buttons in commerce and contact forms and carts.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function form_buttons_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  
+  $current_path = \Drupal::service('path.current')->getPath();
+
+  if (strpos($form_id, "commerce_order_item_add_to_cart_form") !== false) {
+    if (strpos($current_path, 'products') == true || strpos($current_path, 'cart') || strpos($current_path, 'store')) {
+
+      $form['actions']['submit']['#value'] = t('Buy now');
+     // code...
+   }
+   else {
+     $form['actions']['submit']['#value'] = t('Add to basket');
+   }
+  }
+
+
+  if ($form_id == 'contact_message_feedback_form') {
+      # code...
+      $form['actions']['submit']['#value'] = t('Send');
+  }
+}
